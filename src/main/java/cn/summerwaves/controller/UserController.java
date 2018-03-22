@@ -129,6 +129,7 @@ public class UserController {
         List<User> userList = new ArrayList<User>();
         userList.add(user1);
         userList.add(user2);
+
         model.addAttribute("userList", userList);
         model.addAttribute("total", 2);
         model.addAttribute("code", 0);
@@ -149,6 +150,23 @@ public class UserController {
 
         return "/getAllUser";
     }
+
+    @RequestMapping(value = "/set/request", method = RequestMethod.GET)
+    public String setRequest(Model model,HttpServletRequest request) {
+        request.setAttribute("fuck","hedonglin");
+        return "/setRquest";
+    }
+
+    @RequestMapping(value = "/get/request", method = RequestMethod.GET)
+    public String getRequest(Model model,HttpServletRequest request,String test,String test2) {
+        String fuck =  request.getParameter("fuck");
+        log.info("the test is {},test2 is {}", test,test2);
+        model.addAttribute("request", fuck);
+        return "getRequest";
+    }
+
+
+
 
 
 

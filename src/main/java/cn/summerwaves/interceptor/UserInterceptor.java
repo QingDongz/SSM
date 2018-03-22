@@ -18,8 +18,12 @@ public class UserInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         String test = httpServletRequest.getParameter("test");
+        String method = httpServletRequest.getMethod();
         String path = httpServletRequest.getServletPath();
+        String params = httpServletRequest.getQueryString();
         log.info("the param is {},the url is \"{}\"", test, path);
+        log.info("the method is {}", method);
+        log.info("the params is {}",params);
         return true;
     }
 

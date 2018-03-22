@@ -3,26 +3,21 @@ package cn.summerwaves.model;
 import com.google.gson.annotations.SerializedName;
 
 public class User {
-    private Long id;
+    private double id;
 
     private String username;
 
     private String password;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+    private double age;
 
-    public Long getId() {
+    private double total = age + id;
+
+    public double getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(double id) {
         this.id = id;
     }
 
@@ -31,7 +26,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
     public String getPassword() {
@@ -39,6 +34,22 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
+    }
+
+    public double getAge() {
+        return age;
+    }
+
+    public void setAge(double age) {
+        this.age = age;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 }

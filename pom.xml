@@ -82,7 +82,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>6.0.6</version>
+      <version>5.1.44</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
     <dependency>
@@ -319,6 +319,21 @@
                   <target>1.6</target>
               </configuration>
           </plugin>
+        <plugin>
+
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+
+          <configuration>
+            <url>http://www.summerwaves.cn:8080/manager/text</url>
+            <username>admin</username>
+            <password>tomcat</password>
+            <update>true</update>
+            <path>/data/tomcat-home1/ROOT/</path>
+          </configuration>
+
+        </plugin>
       </plugins>
   </build>
 </project>
