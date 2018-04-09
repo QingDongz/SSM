@@ -22,7 +22,12 @@
     <input type="submit" value="生成网址"/><br/>
 </form>
 测试网址：<a href="${token}">跳转地址</a><br/>
-真实地址：${token}
+真实地址：${token}<br/>
+用户名：${username}<br/>
+真实姓名：${name}<br/>
+手机号：${mobile}<br/>
+<br/><br/>
+注：若缺少用户名，则按客户端进行跳转至引导注册页面
 
 </body>
 </html>

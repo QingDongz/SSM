@@ -30,6 +30,10 @@ public class TaskController {
             return "xinhuameiyu";
         }
         model.addAttribute("token", "http://zhiyu.xinhuameiyu.com/a/xinhuameiyu?token="+token);
+        model.addAttribute("client",client);
+        model.addAttribute("username", username);
+        model.addAttribute("mobile", mobile);
+        model.addAttribute("name", name);
 
         return "xinhuameiyu";
     }
