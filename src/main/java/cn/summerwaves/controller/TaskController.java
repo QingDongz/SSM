@@ -17,25 +17,25 @@ public class TaskController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 
-    @RequestMapping(value = "/xinhuameiyu", method = RequestMethod.GET)
+    @RequestMapping(value = "/cooperator", method = RequestMethod.GET)
     public String getUserById(Model model, String client, String username, String mobile,String name) throws Exception {
 
         log.info(Charset.defaultCharset()+"");
-        String token = DES2Base64Util.encryption("client="+client+"&username="+username+"&mobile="+mobile+"&name="+name+"&timestamp="+System.currentTimeMillis(),"a7ca3c5d");
+        String token = DES2Base64Util.encryption("client="+client+"&username="+username+"&mobile="+mobile+"&name="+name+"&timestamp="+System.currentTimeMillis(),"asdadsa");
         token = URLEncoder.encode(token, "UTF-8");
         if (StringUtils.isBlank(client)
                 && StringUtils.isBlank(username)
                 && StringUtils.isBlank(mobile)
                 && StringUtils.isBlank(name)) {
-            return "xinhuameiyu";
+            return "cooperator";
         }
-        model.addAttribute("token", "http://zhiyu.xinhuameiyu.com/a/xinhuameiyu?token="+token);
+        model.addAttribute("token", "http://cooperator.cooperator.com/a/cooperator?token="+token);
         model.addAttribute("client",client);
         model.addAttribute("username", username);
         model.addAttribute("mobile", mobile);
         model.addAttribute("name", name);
 
-        return "xinhuameiyu";
+        return "cooperator";
     }
 
 
