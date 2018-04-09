@@ -3,14 +3,15 @@ package cn.summerwaves.controller;
 
 import cn.summerwaves.dao.UserDao;
 import cn.summerwaves.model.User;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import cn.summerwaves.util.JsonPropertyFilter;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.google.gson.Gson;
-import com.google.gson.annotations.Expose;
-import org.json.JSONArray;
-import org.json.JSONObject;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,19 +19,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class UserController {
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
+    @Resource
     private UserDao userDao;
 
     @RequestMapping(value = "test", method = RequestMethod.GET)
@@ -92,29 +91,29 @@ public class UserController {
         return json;
     }
 
-    @RequestMapping(value = "/jsonobject", method = RequestMethod.GET)
-    @ResponseBody
-    public String toJsonObject() {
-        User user1 = new User();
-        user1.setId(1L);
-        user1.setUsername("1234");
-        user1.setPassword("4567");
-        User user2 = new User();
-        user2.setId(7L);
-        user2.setUsername("55555");
-        user2.setPassword("66666");
-
-        List<User> userList = new ArrayList<User>();
-        userList.add(user1);
-        userList.add(user2);
-        JSONObject json = new JSONObject();
-        JSONArray jsonArray = new JSONArray(userList);
-
-
-        json.put("userList", jsonArray);
-        json.put("fuck", "you");
-        return json.toString();
-    }
+//    @RequestMapping(value = "/jsonobject", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String toJsonObject() {
+//        User user1 = new User();
+//        user1.setId(1L);
+//        user1.setUsername("1234");
+//        user1.setPassword("4567");
+//        User user2 = new User();
+//        user2.setId(7L);
+//        user2.setUsername("55555");
+//        user2.setPassword("66666");
+//
+//        List<User> userList = new ArrayList<User>();
+//        userList.add(user1);
+//        userList.add(user2);
+//        JSONObject json = new JSONObject();
+//        JSONArray jsonArray = new JSONArray(userList);
+//
+//
+//        json.put("userList", jsonArray);
+//        json.put("fuck", "you");
+//        return json.toString();
+//    }
 
     @RequestMapping(value = "/jsontaglib", method = RequestMethod.GET)
     public String toJsonTaglib(Model model) {
@@ -165,8 +164,44 @@ public class UserController {
         return "getRequest";
     }
 
+//
+//    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
+//    public void updateTest(User user) {
+//        log.info("the user is {}", user);
+//        Boolean success = userDao.updateByPrimaryKeySelective(user);
+//        log.info("update user success :{}", success);
+//    }
 
 
+//    @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
+//    public void getTest(User user) {
+//        log.info("the user is {}", user);
+//        Boolean success = userDao.updateByPrimaryKeySelective(user);
+//        log.info("update user success :{}", success);
+//    }
+
+    @RequestMapping(value = "/test/filter", method = RequestMethod.GET)
+    @ResponseBody
+    public JSONObject filter(Model model,Integer page,Integer size) {
+        if (null == page || page < 1) {
+            page = 1;
+        }
+        if (null == size || size < 0) {
+            size = 10;
+        }
+        JSONObject jsonObject = new JSONObject();
+        PageHelper.startPage(page, size);
+        List<User> userList = userDao.selectAllUser();
+        List<String> filterList = Arrays.asList("password","age");
+        JsonPropertyFilter jsonPropertyFilter = new JsonPropertyFilter();
+        JSONArray jsonArray = jsonPropertyFilter.jsonPropertyFilter(userList, filterList);
+        jsonObject.put("code", 0);
+        jsonObject.put("message", "success");
+        jsonObject.put("pageNum", ((Page)userList).getPages());
+        jsonObject.put("studentList", jsonArray);
+
+        return jsonObject;
+    }
 
 
 

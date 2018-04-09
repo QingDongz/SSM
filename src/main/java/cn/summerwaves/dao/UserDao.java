@@ -7,17 +7,17 @@ import java.util.List;
 
 @Repository
 public interface UserDao {
-    int deleteByPrimaryKey(Long id);
+    Boolean deleteByPrimaryKey(Long id);
 
     List<User> selectAllUser();
 
-    int insert(User record);
+    Long insert(User record);
 
-    int insertSelective(User record);
+    Long insertSelective(User record);
 
     User selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(User record);
+    Boolean updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(User record);
+    Boolean updateByPrimaryKey(User record);
 }

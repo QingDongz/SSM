@@ -5,9 +5,10 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="age" jdbcType="INTEGER" property="age" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, username, password
+    id, username, password,age
   </sql>
 
 
@@ -26,9 +27,9 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="cn.summerwaves.model.User">
-    insert into user (id, username, password
+    insert into user (id, username, password,age
       )
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},#{age,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.summerwaves.model.User">
@@ -43,6 +44,12 @@
       <if test="password != null">
         password,
       </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -53,6 +60,12 @@
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>

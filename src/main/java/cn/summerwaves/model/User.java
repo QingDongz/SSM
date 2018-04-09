@@ -2,22 +2,34 @@ package cn.summerwaves.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
-    private double id;
+
+public class User implements Comparable<User>{
+    private Long id;
 
     private String username;
 
     private String password;
 
-    private double age;
+    private Integer age;
 
-    private double total = age + id;
+    private Integer sex;
 
-    public double getId() {
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                '}';
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -37,19 +49,24 @@ public class User {
         this.password = password;
     }
 
-    public double getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(double age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public double getTotal() {
-        return total;
+    public Integer getSex() {
+        return sex;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return 0;
     }
 }
