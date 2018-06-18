@@ -14,6 +14,12 @@ public class User implements Comparable<User>{
 
     private Integer sex;
 
+
+
+
+
+
+
     @Override
     public String toString() {
         return "User{" +

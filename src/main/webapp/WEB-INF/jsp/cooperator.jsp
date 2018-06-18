@@ -13,6 +13,7 @@
     <title>Title</title>
 </head>
 <body>
+
 <form method="get" action="${ctx}/cooperator">
     用户名：<input type="text" name="username"/><br/>
     真实姓名：<input type="text" name="name"/><br/>

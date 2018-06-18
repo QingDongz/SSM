@@ -6,8 +6,10 @@ import com.github.pagehelper.PageHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -52,10 +54,10 @@ public class UserDaoTest {
     @Test
     public void insert() {
         User user = new User();
-        user.setUsername("test");
+        user.setUsername("一二三四五六七八九十");
         user.setPassword("test");
         Long success = userDao.insert(user);
-        System.out.println("the insert id is " + success);
+        System.out.println("the insert id is " + user.getId());
     }
 
     @Test

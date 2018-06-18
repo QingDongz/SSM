@@ -41,6 +41,8 @@ public class UserController {
         return "test";
     }
 
+
+
     @RequestMapping(value = "test1", method = RequestMethod.GET)
     public void sendRedirect(HttpServletResponse response) throws IOException {
         response.sendRedirect("http://www.baidu.com");
@@ -48,15 +50,15 @@ public class UserController {
 
     @RequestMapping(value = "/test2", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> test2(Boolean fuck) {
-        log.info("the boolean fuck value is {}", fuck);
+    public Map<String, Object> test2(HttpServletRequest request,Boolean fuck) {
+        log.info("the boolean fuck value is {},the head params is {}", fuck, request.getHeader("test"));
         Map<String, Object> map = new HashMap<String, Object>();
 
         User user = new User();
         user.setId(1L);
         user.setUsername("1234");
         user.setPassword("4567");
-        map.put("fuck", "1234");
+        map.put("fuck", 1234);
         map.put("test", user);
         return map;
     }
@@ -91,30 +93,6 @@ public class UserController {
         return json;
     }
 
-//    @RequestMapping(value = "/jsonobject", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String toJsonObject() {
-//        User user1 = new User();
-//        user1.setId(1L);
-//        user1.setUsername("1234");
-//        user1.setPassword("4567");
-//        User user2 = new User();
-//        user2.setId(7L);
-//        user2.setUsername("55555");
-//        user2.setPassword("66666");
-//
-//        List<User> userList = new ArrayList<User>();
-//        userList.add(user1);
-//        userList.add(user2);
-//        JSONObject json = new JSONObject();
-//        JSONArray jsonArray = new JSONArray(userList);
-//
-//
-//        json.put("userList", jsonArray);
-//        json.put("fuck", "you");
-//        return json.toString();
-//    }
-
     @RequestMapping(value = "/jsontaglib", method = RequestMethod.GET)
     public String toJsonTaglib(Model model) {
         User user1 = new User();
@@ -128,13 +106,15 @@ public class UserController {
         List<User> userList = new ArrayList<User>();
         userList.add(user1);
         userList.add(user2);
+        log.info("测试");
+        System.out.println("测试");
 
         model.addAttribute("userList", userList);
         model.addAttribute("total", 2);
         model.addAttribute("code", 0);
         model.addAttribute("message", "success");
 
-        return "/jsontaglib";
+        return "jsontaglib";
     }
 
     @RequestMapping(value = "/a/u/user/list", method = RequestMethod.GET)
@@ -164,21 +144,7 @@ public class UserController {
         return "getRequest";
     }
 
-//
-//    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
-//    public void updateTest(User user) {
-//        log.info("the user is {}", user);
-//        Boolean success = userDao.updateByPrimaryKeySelective(user);
-//        log.info("update user success :{}", success);
-//    }
 
-
-//    @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
-//    public void getTest(User user) {
-//        log.info("the user is {}", user);
-//        Boolean success = userDao.updateByPrimaryKeySelective(user);
-//        log.info("update user success :{}", success);
-//    }
 
     @RequestMapping(value = "/test/filter", method = RequestMethod.GET)
     @ResponseBody
@@ -202,6 +168,23 @@ public class UserController {
 
         return jsonObject;
     }
+
+
+    @RequestMapping(value = "/header", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String, String> getDomain(HttpServletRequest request, String test) {
+
+        String domain = request.getHeader("header");
+        log.info("请求头是：{}", domain);
+        log.info("主体内容为：{}", test);
+        HashMap<String, String> map = new HashMap<String, String>(2);
+        map.put("body", test);
+        map.put("header", domain);
+
+        return map;
+    }
+
+
 
 
 

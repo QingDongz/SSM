@@ -5,19 +5,21 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.Map;
 
-import static org.junit.Assert.*;
-
 public class PropertisUtilsTest {
 
     @Test
-    public void getProperties() {
-        Map testMap = null;
-        try {
-            testMap = PropertisUtils.getProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(testMap);
+    public void getProperties() throws IOException {
+        System.out.println(PropertisUtils.getProperties("mapper/properties.properties"));
 
     }
+
+    @Test
+    public void getProperties1() {
+        String s = "fuck1test2just";
+        String[] ss = s.split("\\d");
+        for (String sss : ss) {
+            System.out.println(sss);
+        }
+    }
+
 }

@@ -2,8 +2,6 @@ package cn.summerwaves.interceptor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.MethodParameter;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,13 +15,13 @@ public class UserInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        String test = httpServletRequest.getParameter("test");
+//        String test = httpServletRequest.getParameter("test");
         String method = httpServletRequest.getMethod();
-        String path = httpServletRequest.getServletPath();
+//        String path = httpServletRequest.getServletPath();
         String params = httpServletRequest.getQueryString();
-        log.info("the param is {},the url is \"{}\"", test, path);
-        log.info("the method is {}", method);
-        log.info("the params is {}",params);
+//        log.info("the param is {},the url is \"{}\"", test, path);
+//        log.info("the method is {}", method);
+//        log.info("the params is {}",params);
         return true;
     }
 
