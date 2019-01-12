@@ -93,42 +93,7 @@ public class UserController {
         return json;
     }
 
-    @RequestMapping(value = "/jsontaglib", method = RequestMethod.GET)
-    public String toJsonTaglib(Model model) {
-        User user1 = new User();
-        user1.setId(1L);
-        user1.setUsername("1234");
-        user1.setPassword("4567");
-        User user2 = new User();
-        user2.setId(7L);
-        user2.setUsername("55555");
-        user2.setPassword("66666");
-        List<User> userList = new ArrayList<User>();
-        userList.add(user1);
-        userList.add(user2);
-        log.info("测试");
-        System.out.println("测试");
 
-        model.addAttribute("userList", userList);
-        model.addAttribute("total", 2);
-        model.addAttribute("code", 0);
-        model.addAttribute("message", "success");
-
-        return "jsontaglib";
-    }
-
-    @RequestMapping(value = "/a/u/user/list", method = RequestMethod.GET)
-    public String toUserList(Model model) {
-        List<User> userList = userDao.selectAllUser();
-
-
-        model.addAttribute("code", 0);
-        model.addAttribute("message", "success");
-        model.addAttribute("total", userList.size());
-        model.addAttribute("userList", userList);
-
-        return "/getAllUser";
-    }
 
     @RequestMapping(value = "/set/request", method = RequestMethod.GET)
     public String setRequest(Model model,HttpServletRequest request) {
