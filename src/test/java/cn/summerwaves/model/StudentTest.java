@@ -8,18 +8,18 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 public class StudentTest {
-    @Mock
-    private UserDao userDao;
-
-    @Test
-    public void setNumber() {
-        User user = new User();
-        user.setId(1L);
-        user.setPassword("pwd");
-        user.setUsername("username");
-        when(userDao.insertSelective(user)).thenReturn(1L);
-        userDao.insertSelective(user);
-    }
+//    @Mock
+//    private UserDao userDao;
+//
+//    @Test
+//    public void setNumber() {
+//        User user = new User();
+//        user.setId(1L);
+//        user.setPassword("pwd");
+//        user.setUsername("username");
+//        when(userDao.insertSelective(user)).thenReturn(1L);
+//        userDao.insertSelective(user);
+//    }
 
     @Test
     public void setAge() {

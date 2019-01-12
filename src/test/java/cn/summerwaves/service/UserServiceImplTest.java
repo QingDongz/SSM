@@ -37,8 +37,8 @@ public class UserServiceImplTest {
     private UserController userController;
 
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserService userService;
 
     @Autowired
     WebApplicationContext wac;
@@ -64,13 +64,13 @@ public class UserServiceImplTest {
         System.out.println(resultActions.andReturn().getResponse().getContentAsString());
     }
 
-    @Test
-    public void selectByPrimaryKey() {
-        User user = userService.selectByPrimaryKey(1L);
-        user.setPassword(666+"");
-        Boolean success = userService.updateByPrimaryKeySelective(user);
-        System.out.println(success);
-    }
+//    @Test
+//    public void selectByPrimaryKey() {
+//        User user = userService.selectByPrimaryKey(1L);
+//        user.setPassword(666+"");
+//        Boolean success = userService.updateByPrimaryKeySelective(user);
+//        System.out.println(success);
+//    }
 
     @Test
     public void updateByPrimaryKeySelective() {
@@ -85,25 +85,25 @@ public class UserServiceImplTest {
     public void updateByPrimaryKeySelective1() {
     }
 
-    @Test
-
-    public void insert() {
-        User user = new User();
-        user.setUsername("fuck");
-        user.setPassword("pwd");
-        Long success = userService.insert(user);
-        System.out.println(success);
-        System.out.println(user.getId());
-
-    }
-
-    @Test
-    public void insertSelective(){
-        User user = new User();
-        user.setUsername("fuck");
-        user.setPassword("pwd");
-        Long success = userService.insertSelective(user);
-        System.out.println(success);
-        System.out.println(user.getId());
-    }
+//    @Test
+//
+//    public void insert() {
+//        User user = new User();
+//        user.setUsername("fuck");
+//        user.setPassword("pwd");
+//        Long success = userService.insert(user);
+//        System.out.println(success);
+//        System.out.println(user.getId());
+//
+//    }
+//
+//    @Test
+//    public void insertSelective(){
+//        User user = new User();
+//        user.setUsername("fuck");
+//        user.setPassword("pwd");
+//        Long success = userService.insertSelective(user);
+//        System.out.println(success);
+//        System.out.println(user.getId());
+//    }
 }
